@@ -11,6 +11,13 @@ class StudentService {
     }
 
 
+    static updateStudent(id, updatedStudent) {
+        return axios.put(STUDENT_API_URL + "/" + id, updatedStudent);
+    }
+
+    static getStudentById(id) {
+        return axios.get(STUDENT_API_URL + "/" + id);
+    }
 }
 
 export default StudentService

@@ -50,7 +50,8 @@ const StudentList = () => {
                     <td className="text-center">{student.group.name}</td>
                     <td className="text-center">
                         <Button className='btn btn-danger' onClick={() => handleDelete(student.id)}>Delete</Button>
-                        <Button className='btn btn-primary' onClick={() => navigate('/student-edit')}>Edit</Button>
+                        <Button className='btn btn-primary'
+                                onClick={() => navigate('/student-edit/' + student.id)}>Edit</Button>
                     </td>
                 </tr>))}
             </tbody>
