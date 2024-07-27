@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {Table} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
+import {Button, Table} from "react-bootstrap";
 import StudentService from "../../services/student.service";
+import {toast, ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StudentList = () => {
 
@@ -13,8 +15,19 @@ const StudentList = () => {
         })
     }, [])
 
+    const handleDelete = (id) => {
+        if (window.confirm("Are you sure you want to delete this student?")) {
+            StudentService.deleteStudentById(id).then(() => {
+                setStudents(students.filter(student => student.id !== id));
+                toast.success("Student deleted successfully!");
+            }).catch(error => {
+                toast.error("Failed to delete student.");
+            });
+        }
+    };
 
-    return (<div className="container">
+    return (
+        <div className="container">
             <h4 className="card-title text-center my-5 ">Student List</h4>
             <Table className="table">
                 <thead>
@@ -35,12 +48,16 @@ const StudentList = () => {
                         <td className="text-center">{student.email}</td>
                         <td className="text-center">{student.date}</td>
                         <td className="text-center">{student.group.name}</td>
-                        <td className="text-center">Delete | Edit</td>
+                        <td className="text-center">
+                            <Button className='btn btn-danger' onClick={() => handleDelete(student.id)}>Delete</Button>
+                            <Button className='btn btn-primary'>Edit</Button>
+                        </td>
                     </tr>))}
                 </tbody>
             </Table>
+            <ToastContainer/>
         </div>
-
     )
 }
-export default StudentList
+
+export default StudentList;
