@@ -1,8 +1,9 @@
 import axios from 'axios';
+import {STUDENT_API_URL} from "../config/backend.config";
 
 class StudentService {
     static async getAllStudents() {
-        return await axios.get(`STUDENT_API_URL?_embed=course`);
+        return await axios.get(STUDENT_API_URL + '?_embed=group');
     }
 
     static async deleteStudent(id) {
@@ -10,7 +11,6 @@ class StudentService {
     }
 
     static async getStudentById(id) {
-        return await axios.get(`STUDENT_API_URL/${id}?_embed=course`);
     }
 
     static async createStudent(student) {

@@ -8,9 +8,10 @@ const StudentList = () => {
 
     useEffect(() => {
         StudentService.getAllStudents().then(response => {
+            console.log(response.data);
             setStudents(response.data);
         })
-    })
+    }, [])
 
 
     return (<div className="container">
@@ -27,14 +28,15 @@ const StudentList = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr className="table-row">
-                    <td className="text-center"> 1</td>
-                    <td className="text-center"> John Doe</td>
-                    <td className="text-center">email@gmail.com</td>
-                    <td className="text-center"> 22/07/2024</td>
-                    <td className="text-center"> C0224G1</td>
-                    <td className="text-center"> Delete | Edit</td>
-                </tr>
+                {students.map((student, index) => (
+                    <tr className={`table-row ${student.active ? "" : "inactive-row"}`} key={student.id}>
+                        <td className="text-center">{index + 1}</td>
+                        <td className="text-center">{student.name}</td>
+                        <td className="text-center">{student.email}</td>
+                        <td className="text-center">{student.date}</td>
+                        <td className="text-center">{student.group.name}</td>
+                        <td className="text-center">Delete | Edit</td>
+                    </tr>))}
                 </tbody>
             </Table>
         </div>
