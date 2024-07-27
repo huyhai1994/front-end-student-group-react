@@ -23,4 +23,4 @@
 2. khi điền URL cho student.service.js nên để '' thay vì `` (dễ sai đường dẫn đang để URL gốc là dạng String);
 3. Nhớ đặt Browser vào chỗ index.js để không bị lỗi useRoutes();
 4. dùng navigate thay vì dùng href;
-5. 
+5. Khi dùng toastify nhớ đặt đường dãn CSS vào index.js; và đặt <TOASTCONTAINER> vào trong App.js (thì mới alert được thông tin ra màn hình);
