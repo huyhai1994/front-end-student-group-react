@@ -10,13 +10,17 @@ class StudentService {
         return await axios.delete(STUDENT_API_URL + "/" + id);
     }
 
-
     static updateStudent(id, updatedStudent) {
         return axios.put(STUDENT_API_URL + "/" + id, updatedStudent);
     }
 
     static getStudentById(id) {
         return axios.get(STUDENT_API_URL + "/" + id);
+    }
+
+
+    static addStudent(studentData) {
+        return axios.post(STUDENT_API_URL + '/', studentData);
     }
 }
 
